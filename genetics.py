@@ -35,7 +35,7 @@ def spawn_new_generation(dead) -> list:
 
     # 3 nové vtáky -> potomkovia náhodných dvoch víťazov
     for i in range(3):
-        winners = [ brains[-1], brains[-2], brains[-3], brains[-1] ]
+        winners = [ brains[-1], brains[-2], brains[-3], brains[-4] ]
         winner_1 = random.choice(winners)
         winner_2 = random.choice(winners)
 
