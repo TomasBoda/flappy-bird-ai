@@ -14,14 +14,17 @@ Tomáš Boďa
 * [ Záverečný povzdych ](#zaverecny-povzdych)
 
 <a name="strucne-zadanie"></a>
-## Stručné zadanie
+## Zadanie
 Cieľom programu bolo vytvoriť jednoduchú umelú inteligenciu skladajúcu sa z **Feed Forward Neural Network** a **Genetic Learning Algorithm**, ktorá sa dokáže naučiť hrať hru Flappy Bird.
 
-<a name="zvoleny-algoritmus"></a>
-## Zvolený algoritmus
-Na učenie neurálnych sietí je v mnohých prípadoch častou voľbou **Back Propagation Algorithm**, ktorý podľa odchýlky od požadovaného výsledku cestuje v neurálnej sieti smerom naspäť a upravuje neurálne spojenia, aby sa čoraz viac približovali k správnemu riešeniu. Flappy Bird si však vyžaduje trochu odlišný, až priam tématický prístup. Pre tento program som si zvolil heuristický **Genetic Learning Algorithm** inšpirovaný Darwinovou teóriou evolúcie. Funguje na báze prirodzeného výberu, kde slabší jedinci zahynú a tí silnejší sú vybraní na vyprodukovanie novej, lepšej generácie.
+## Použité technológie
+Program je napísaný v programovacom jazyku **Python**. Na Game Loop a renderovanie hernej časti programu som využil knižnicu **PyGame** a vytvoril som si pomocnú triedu **Rectangle** s funkciu `intersects`, ktorá uľahčuje detekciu kolízí objektov v hre. Okrem toho program využíva iba štandardné Python balíčky.
 
-**Genetic Learning Algorithm** zoberie najzdatnejších jedincov (resp. ich neurálne siete) ako svoje vstupné dáta a pomocou **crossover** funkcie vyprodukuje nových jedincov, ktorí zdedia charakteristiky po svojich rodičoch. Crossover funkcia vyzerá následovne.
+<a name="zvoleny-algoritmus"></a>
+## Hlavná funkcionalita
+Hlavným zámerom bolo vytvoriť umelú inteligenciu, za pomoci ktorej sa vták učí skákať a zdolávať prekážky tak, aby po istom čase dokázal hrať hru takmer bezchybne. Na túto úlohu som sa rozhodol použiť neurálnu sieť. Na učenie neurálnych sietí je v mnohých prípadoch častou voľbou **Back Propagation Algorithm**, ktorý podľa odchýlky od požadovaného výsledku cestuje v neurálnej sieti smerom naspäť a upravuje neurálne spojenia, aby sa čoraz viac približovali k správnemu riešeniu. Flappy Bird si však vyžaduje trochu odlišný, až priam tématický prístup. Pre tento program som si preto zvolil heuristický **Genetic Algorithm** inšpirovaný Darwinovou teóriou evolúcie. Funguje na báze prirodzeného výberu, kde slabší jedinci zahynú a tí silnejší sú vybraní na vyprodukovanie novej, lepšej generácie.
+
+**Genetic Algorithm** zoberie najzdatnejších jedincov (resp. ich neurálne siete) z predošlej generácie ako svoje vstupné dáta a pomocou **crossover** funkcie vyprodukuje nových jedincov, ktorí zdedia charakteristiky po svojich rodičoch. Na to je potrebná funkcia, ktorá si na vstupe vypýta dvoch rodičov a na základe ich neurálnych sietí vyprodukuje nového jedinca. Táto funckia sa vola **Crossover** a implementoval som ju následovne.
 
 ```python
 def crossover(brain_1, brain_2) -> Bird:
@@ -37,7 +40,7 @@ def crossover(brain_1, brain_2) -> Bird:
     return Bird(0, "Crossover", NeuralNetwork([ 2, 6, 1 ], new_weights))
 ```
 
-**Genetic Algorithm** sa dá navrhnúť rôznymi spôsobmi a má mnoho obmien, ja som si zvolil jeho jednoduchšiu variantu, ktorá funguje následovne a vyzerá takto.
+**Genetic Algorithm** sa dá navrhnúť rôznymi spôsobmi a má mnoho obmien, ja som si však zvolil jeho jednoduchšiu variantu, ktorá vyzerá a funguje následovne.
 
 <a name="vstup-algoritmu"></a>
 ### Vstup algoritmu
@@ -50,6 +53,8 @@ def crossover(brain_1, brain_2) -> Bird:
 - 1 vták je potomok 2 najzdatnejších vtákov
 - 3 vtáky sú potomkovia náhodných 2 zo 4 najzdatnejších vtákov
 - 2 vtáky sú vygenerované úplne náhodne (aby sa vývoj nezacyklil)
+
+Algoritmus som implementoval následovne.
 
 ```python
 def spawn_new_generation(dead) -> list:
@@ -65,7 +70,7 @@ def spawn_new_generation(dead) -> list:
 
     # 3 nové vtáky -> potomkovia náhodných dvoch víťazov
     for i in range(3):
-        winners = [ brains[-1], brains[-2], brains[-3], brains[-1] ]
+        winners = [ brains[-1], brains[-2], brains[-3], brains[-4] ]
         winner_1 = random.choice(winners)
         winner_2 = random.choice(winners)
 
