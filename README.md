@@ -158,3 +158,5 @@ S výsledkom som veľmi spokojný, všetky moje ciele boli splnené. Jediná vec
 <a name="zhrnutie-a-dojmy"></a>
 ## Zhrnutie a dojmy
 Práca na tomto projekte bola pre mňa veľmi obohacujúcim zážitkom. Nielen že som sa naučil základy fungovania neurálnych sietí a umelej inteligencie, ale taktiež bolo veľmi príjemné po celom semestri algoritmov a učenia sa teórie pracovať na celom reálnom projekte, ktorý by mal využitie. Prácu na tomto programe teda hodnotím veľmi pozitívne.
+
+Flappy Bird AI using Genetic Algorithm by [Tomáš Boďa](https://github.com/TomasBoda)
