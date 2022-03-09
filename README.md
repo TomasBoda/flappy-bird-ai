@@ -3,24 +3,26 @@ Tomáš Boďa
 
 ## Obsah
 * [ Stručné zadanie. ](#strucne-zadanie)
-* [ Zvolený algoritmus ](#zvoleny-algoritmus)
+* [ Použité technológie ](#pouzite-technologie)
+* [ Hlavná funkcionalita ](#hlavna-funkcionalita)
   * [ Vstup algoritmu ](#vstup-algoritmu)
   * [ Výstup algoritmu ](#vystup-algoritmu)
 * [ Program ](#program)
   * [ Neurálna sieť ](#neuralna-siet)
   * [ Feed Forward algoritmus a Sigmoid funkcia ](#feed-forward-sigmoid)
 * [ Priebeh práce ](#priebeh-prace)
-* [ Čo nebolo dokončené ](#co-nebolo-dokoncene)
-* [ Záverečný povzdych ](#zaverecny-povzdych)
+* [ Čo by sa dalo ešte zlepšiť ](#co-by-sa-dalo-este-zlepsit)
+* [ Zhrnutie a dojmy ](#zhrnutie-a-dojmy)
 
 <a name="strucne-zadanie"></a>
 ## Zadanie
 Cieľom programu bolo vytvoriť jednoduchú umelú inteligenciu skladajúcu sa z **Feed Forward Neural Network** a **Genetic Learning Algorithm**, ktorá sa dokáže naučiť hrať hru Flappy Bird.
 
+<a name="pouzite-technologie"></a>
 ## Použité technológie
 Program je napísaný v programovacom jazyku **Python**. Na Game Loop a renderovanie hernej časti programu som využil knižnicu **PyGame** a vytvoril som si pomocnú triedu **Rectangle** s funkciu `intersects`, ktorá uľahčuje detekciu kolízí objektov v hre. Okrem toho program využíva iba štandardné Python balíčky.
 
-<a name="zvoleny-algoritmus"></a>
+<a name="hlavna-funkcionalita"></a>
 ## Hlavná funkcionalita
 Hlavným zámerom bolo vytvoriť umelú inteligenciu, za pomoci ktorej sa vták učí skákať a zdolávať prekážky tak, aby po istom čase dokázal hrať hru takmer bezchybne. Na túto úlohu som sa rozhodol použiť neurálnu sieť. Na učenie neurálnych sietí je v mnohých prípadoch častou voľbou **Back Propagation Algorithm**, ktorý podľa odchýlky od požadovaného výsledku cestuje v neurálnej sieti smerom naspäť a upravuje neurálne spojenia, aby sa čoraz viac približovali k správnemu riešeniu. Flappy Bird si však vyžaduje trochu odlišný, až priam tématický prístup. Pre tento program som si preto zvolil heuristický **Genetic Algorithm** inšpirovaný Darwinovou teóriou evolúcie. Funguje na báze prirodzeného výberu, kde slabší jedinci zahynú a tí silnejší sú vybraní na vyprodukovanie novej, lepšej generácie.
 
@@ -145,18 +147,18 @@ def feed_forward(self, input_data):
 
 <a name="priebeh-prace"></a>
 ## Priebeh práce
-Začiatky písania kódu boli vcelku jednoduché. Začal som programovaním samotnej hry (vtákov, potrubí, pozadia, fyziky, kolízí), aby som mohol neskôr svoju neurálnu sieť testovať priamo v hre. Problém nastal, keď som sa pustil do programovania neurálnej siete. Nikdy som nič podobné nerobil, takže som vôbec nevedel, kde začať, akým spôsobom si sieť navrhnúť a pomocou akých dátových štruktúr ju reprezentovať. Začal som čítať rôzne zdroje literatúry a pozerať mnoho videí, kde sa neurálne siete vysvetlovali, no stále sa mi moc nedarilo. Zlom nastal, keď som bol vo vlaku na ceste domov do Bratislavy a prestala fungovať Wi-Fi. Času som mal ešte veľa a jediné, čo som pri sebe mal bol počítač a knižka lineárnej algebry, tak som sa rozhodol, že sa do toho idem pustiť a že vytvorím svoju neurálnu sieť dokým prídeme do Bratislavy. A tak sa aj stalo. Dve hodiny som čítal a študoval lineárnu algebru a počas toho ma napadlo, akým spôsobom si sieť navrhnem a ako by asi mala fungovať. Z vlaku som odchádzal s náhodne vygenerovanou neurálnou sieťou, ktorá riadila skoky vtáka.
+Začiatky písania kódu boli vcelku jednoduché. Začal som programovaním samotnej hry (vtákov, potrubí, pozadia, fyziky, kolízí), aby som mohol neskôr svoju neurálnu sieť testovať priamo v hre. Problém nastal, keď som sa pustil do programovania neurálnej siete. Nikdy som nič podobné nerobil, takže som vôbec nevedel, kde začať, akým spôsobom si sieť navrhnúť a pomocou akých dátových štruktúr ju reprezentovať. Začal som čítať rôzne zdroje literatúry a pozerať mnoho videí, kde sa neurálne siete vysvetlovali, no stále sa mi moc nedarilo. Zlom nastal, keď som bol vo vlaku na ceste domov do Bratislavy a prestala fungovať Wi-Fi. Času som mal ešte veľa a jediné, čo som pri sebe mal bol počítač a knižka lineárnej algebry, tak som sa rozhodol, že sa do toho idem pustiť a že vytvorím svoju neurálnu sieť dokým prídeme do Bratislavy. A tak sa aj stalo. Dve hodiny som čítal a študoval lineárnu algebru a počas toho ma napadlo, akým spôsobom si sieť navrhnem a ako by asi mala fungovať. Z vlaku som víťazne odchádzal s náhodne vygenerovanou neurálnou sieťou, ktorá riadila vtáka a zatiaľ ešte nešikovne zdolávala prekážky.
 
-Začiatky písania kódu neurálnej siete boli ťažké. Vôbec som nevedel, kde začať, akým spôsobom si sieť navrhnúť, pomocou akých datových štruktúr ju reprezentovať. Pozeral som mnoho videí a blogových príspevkov rozoberajúcich neurálne siete, no spraviť jednu sám bolo ťažšie, ako sa zdalo. Zlom nastal vo vlaku na ceste z Prahy do Bratislavy, keď z ničoho nič prestal fungovať internet a jediné, čo mi zostalo bol Python na počítači a učebnica lineárnej algebry. Cesta bola ešte dlhá, tak som sa rozhodol, že idem skúšať. Z vlaku som nakoniec víťazne odchádzal s fungujúcou neurálnou sieťou a prvým vtákom, ktorý vedel nešikovne skákať a prekonávať prekážky.
+Od tohoto úspechu to už išlo ľahko. Neurálnu sieť som prepísal, zefektívnil, no hlavne zovšeobecnil, dolalil som detaily a začal som písať **Genetic Algorithm**. Ten ku podivu nebol zložitý a za pár hodín som mal svoju prvú fungujúcu verziu učenlivej umelej intelgiencie.
 
-Od tohoto malého úspechu to už išlo ľahko. Vtáky a neurálnu sieť som prepísal, hlavne zovšeobecnil, doladil som detaily a začal som písať **Genetic Algorithm**. Ten ku podivu nebol veľmi zložitý, zvládol som ho napísať sám na základe článku popisujúci základy tohoto algoritmu. V tomto bode som si myslel, že mi hra fungovala bezchybne. Avšak, narazil som na problém.
+Problém však nastal, keď som si začal všímať, že keď sa prvá náhodná generácia vtákov nepodarí a vygeneruje sa nešikovne, od toho momentu sa začnú generácie cykliť a sú stále horšie a horšie. Dlho som rozmýšlal, ako tento problém napraviť. Nakoniec som prišiel na jednoduché riešenie, a to také, že v každej novej generácií vygenerujem 2 vtákov, ktorí nebudú potomkami žiadnych rodičov z predošlej generácie, ale budú mať neurálnu sieť vygenerovanú náhodne, aby v prípade chybnej generácie mali šancu byť lepší, ako akýkoľvek iný potomok. Po implementácií tohoto riešenia mi program fungoval správne.
 
-Problém nastával, keď sa prvá generácia vtákov s náhodne vygenerovanými neurálnymi sieťami nevedela prebojovať ani cez prvé (alebo druhé) potrubie. Znamenalo to, že ani jeden vták nebol dostatočne schopný na to, aby sa podľa neho mohla vytvoriť **lepšia** nová generácia. Preto sa program zacyklil a každá ďalšia generácia bola iba horšia a horšia. Dlho som rozmýšlal, ako tento problém vyriešiť nejako šikovne, no nakoniec som ho vyriešil trikom. Tento trik spočíva v tom, že v každej generáci vygenerujem okrem 8 nových potomkov a ktomu 2 úplne náhodné vtáky, ktoré v prípade, že týchto 8 potomkov bude neschopných, majú šancu prebojovať sa. Týmto spôsobom sa hra teoreticky nikdy nezacyklí.
+Na záver som si ešte vytvoril triedu `Dashboard`, ktorá slúži ako status panel, ktorý zobrazuje všetky vtáky generácie, či sú živé, alebo mŕtve, aké dosiahli skóre a ako sa im darí. Týmto krokom som svoj program dokončil.
 
-<a name="co-nebolo-dokoncene"></a>
-## Čo nebolo dokončené
-S výsledkom som veľmi spokojný, všetky moje ciele boli splnené. Jediná vec, nad ktorou by som ešte strávil čas by bolo vyriešiť problém cyklenia, ktorý spomínam vyššie. Riešenie by si vyžadovalo si naštudovať **Genetic Algorithm** podrobnejšie a vyskúšať rôzne techniky, aby sa tomuto problému vyhlo. Okrem toho však všetko funguje tak, ako má.
+<a name="co-by-sa-dalo-este-zlepsit"></a>
+## Čo by sa dalo ešte zlepšiť
+S výsledkom som veľmi spokojný, všetky moje ciele boli splnené. Jediná vec, nad ktorou by som ešte strávil čas by bolo vyriešiť problém cyklenia, ktorý spomínam vyššie. Riešenie by si však vyžadovalo naštudovať **Genetic Algorithm** podrobnejšie a vyskúšať rôzne techniky, aby sa tomuto problému vyhlo bez pomoci dvoch náhodných vtákov. Okrem toho však všetko funguje tak, ako má.
 
-<a name="zaverecny-povzdych"></a>
-## Záverečný povzdych
-Ako som spomínal vyššie, práca na tomto projekte bola veľmi obohacujúcim zážitkom. Zistil som pri nej, že ma umelá inteligencia veľmi baví a začal som rozmýšlať, že si ju zvolím ako špecializáciu v ďalších ročníkoch. Taktiež to bol veľmi príjemne strávený čas pri programovaní **reálneho** problému popri tých všetkých algoritmoch a datových štruktúrach, ktoré sa učíme a implementujeme celý rok. Prácu a všeobecne projekt teda hodnotím veľmi pozitívne.
+<a name="zhrnutie-a-dojmy"></a>
+## Zhrnutie a dojmy
+Práca na tomto projekte bola pre mňa veľmi obohacujúcim zážitkom. Nielen že som sa naučil základy fungovania neurálnych sietí a umelej inteligencie, ale taktiež bolo veľmi príjemné po celom semestri algoritmov a učenia sa teórie pracovať na celom reálnom projekte, ktorý by mal využitie. Prácu na tomto programe teda hodnotím veľmi pozitívne.
