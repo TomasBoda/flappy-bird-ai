@@ -1,5 +1,5 @@
 # Dokumentácia
-Tomáš Boďa
+Flappy Bird AI using Genetic Algorithm by [Tomáš Boďa](https://github.com/TomasBoda)
 
 ## Obsah
 * [ Stručné zadanie. ](#strucne-zadanie)
