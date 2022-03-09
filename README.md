@@ -5,8 +5,6 @@ Tomáš Boďa
 * [ Stručné zadanie. ](#strucne-zadanie)
 * [ Použité technológie ](#pouzite-technologie)
 * [ Hlavná funkcionalita ](#hlavna-funkcionalita)
-  * [ Vstup algoritmu ](#vstup-algoritmu)
-  * [ Výstup algoritmu ](#vystup-algoritmu)
 * [ Program ](#program)
   * [ Neurálna sieť ](#neuralna-siet)
   * [ Feed Forward algoritmus a Sigmoid funkcia ](#feed-forward-sigmoid)
@@ -44,11 +42,9 @@ def crossover(brain_1, brain_2) -> Bird:
 
 **Genetic Algorithm** sa dá navrhnúť rôznymi spôsobmi a má mnoho obmien, ja som si však zvolil jeho jednoduchšiu variantu, ktorá vyzerá a funguje následovne.
 
-<a name="vstup-algoritmu"></a>
 ### Vstup algoritmu
 10 vtákov zoradených od najzdatnejšieho po najslabšieho
 
-<a name="vystup-algoritmu"></a>
 ### Výstup algoritmu
 10 vtákov novej generácie, z toho
 - 4 vtáky sú priame kópie 4 najzdatnejších vtákov
