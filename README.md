@@ -96,7 +96,7 @@ Program sa neskladá zo žiadnych komplexných alebo náročnejších datových 
 ### Neurálna sieť
 Cieľom pri implementácí neurálnej sieťe bolo vytvoriť ju čo najviac škálovateľnú a flexibilnú, aby sa dala jej topológia jednoducho meniť v prípade potreby. Preto si inicializácia neurálnej sieťe vyžaduje parameter `layers: list`, ktorý reprezentuje počet vrstiev neurálnej siete a počet neurónov na každej vrstve. Podľa tohoto parametru zinicializuje neurálna sieť **neuróny** s počiatočnými hodnotami 0, **weights** s náhodnými počiatočnými hodnotami z intervalu [0, 1] a **biases**, ktoré v neurálnej sieti nehrajú zatiaľ žiadnu rolu, preto s počiatočnými hodnotami 0.
 
-Čo sa týka topológie neurálnej siete, skúšal som mnoho variant, no veľa z nich nefungovalo. Najlepšie fungovala neurálna sieť s 2 input neurónmi, 6 hidden-layer neurónmi a 1 output neurónom. Vstupom neurálnej siete je vertikálna a horizontálna vzdialenosť vtáka od diery najbližšieho potrubia a výstupom je jedno číslo z intervalu [0, 1], ktoré determinuje, či má vták skočiť alebo nie.
+Čo sa týka topológie neurálnej siete, skúšal som mnoho variant, no veľa z nich nefungovalo. Najlepšie fungovala neurálna sieť s 2 input neurónmi, 6 hidden-layer neurónmi a 1 output neurónom (`layers: list = [ 2, 6, 1 ]`). Vstupom neurálnej siete je vertikálna a horizontálna vzdialenosť vtáka od diery najbližšieho potrubia a výstupom je jedno číslo z intervalu [0, 1], ktoré determinuje, či má vták skočiť alebo nie.
 
 ```python
 class NeuralNetwork:
@@ -110,9 +110,9 @@ class NeuralNetwork:
 
 <a name="feed-forward-sigmoid"></a>
 ### Feed Forward algoritmus a Sigmoid funkcia
-Feed Forward algoritmus je zodpovedný za postupné posúvanie vstupných dát cez neurálnu sieť až do poslednej vrstvy. Hodnota každého neurónu na nejakej vrstve je suma cez neuróny predošlej vrstvy, každý vynásobený neurónovým spojením (weight) a ku nemu pripočítaná hodnota bias. Výsledná hodnota tejto sumy sa ešte pošle do **Sigmoid** funkcie, ktorá túto hodnotu znormalizuje na číslo z intervalu [0, 1]. Takýmto spôsobom putujú dáta v neurálnej sieti z input vrstvy až do output vrstvy.
+Feed Forward algoritmus je zodpovedný za postupné posúvanie vstupných dát cez neurálnu sieť až do poslednej vrstvy. Hodnota každého neurónu na nejakej vrstve sa rovná sume cez neuróny predošlej vrstvy, každý vynásobený neurónovým spojením (weight) a ku nemu pripočítaná hodnota bias. Výsledná hodnota tejto sumy sa ešte pošle do **Sigmoid** funkcie, ktorá túto hodnotu znormalizuje na číslo z intervalu [0, 1]. Takýmto spôsobom putujú dáta v neurálnej sieti z input vrstvy až do output vrstvy.
 
-V priebehu hry v každom prekreslení (niekoľko desiatokkrát za sekundu) vypočítam horizontálnu a vertikálnu vzdialenosť vtáka od diery najbližšieho potrubia, pošlem tieto dáta do neurálnej siete, spustím **Feed Forward** algoritmus, získam výsledok a podľa neho sa rozhodnem, či vták skočí, alebo nie.
+V priebehu hry v každom prekreslení (niekoľko desiatok krát za sekundu) vypočítam horizontálnu a vertikálnu vzdialenosť vtáka od diery najbližšieho potrubia, pošlem tieto dáta do neurálnej siete, spustím **Feed Forward** algoritmus, získam výsledok a podľa neho sa rozhodnem, či vták skočí, alebo nie.
 
 ```python
 def sigmoid(self, value):
@@ -120,9 +120,7 @@ def sigmoid(self, value):
         value = 700
 
     return 1 / (1 + math.exp(value))
-```
 
-```python
 def feed_forward(self, input_data):
     for i in range(len(self.nodes[0])):
         self.nodes[0][i] = input_data[i]
@@ -147,7 +145,9 @@ def feed_forward(self, input_data):
 
 <a name="priebeh-prace"></a>
 ## Priebeh práce
-Práca na tomto projekte bola úprimne veľmi obohacujúca a zaujímavá. Koniec koncov som si vybral tento projekt práve preto, aby som získal aspoň nejaký rozhľad a základy umelej inteligencie, keďže som ju nikdy predtým nerobil. Začiatky písania kódu neurálnej siete boli ťažké. Vôbec som nevedel, kde začať, akým spôsobom si sieť navrhnúť, pomocou akých datových štruktúr ju reprezentovať. Pozeral som mnoho videí a blogových príspevkov rozoberajúcich neurálne siete, no spraviť jednu sám bolo ťažšie, ako sa zdalo. Zlom nastal vo vlaku na ceste z Prahy do Bratislavy, keď z ničoho nič prestal fungovať internet a jediné, čo mi zostalo bol Python na počítači a učebnica lineárnej algebry. Cesta bola ešte dlhá, tak som sa rozhodol, že idem skúšať. Z vlaku som nakoniec víťazne odchádzal s fungujúcou neurálnou sieťou a prvým vtákom, ktorý vedel nešikovne skákať a prekonávať prekážky.
+Začiatky písania kódu boli vcelku jednoduché. Začal som programovaním samotnej hry (vtákov, potrubí, pozadia, fyziky, kolízí), aby som mohol neskôr svoju neurálnu sieť testovať priamo v hre. Problém nastal, keď som sa pustil do programovania neurálnej siete. Nikdy som nič podobné nerobil, takže som vôbec nevedel, kde začať, akým spôsobom si sieť navrhnúť a pomocou akých dátových štruktúr ju reprezentovať. Začal som čítať rôzne zdroje literatúry a pozerať mnoho videí, kde sa neurálne siete vysvetlovali, no stále sa mi moc nedarilo. Zlom nastal, keď som bol vo vlaku na ceste domov do Bratislavy a prestala fungovať Wi-Fi. Času som mal ešte veľa a jediné, čo som pri sebe mal bol počítač a knižka lineárnej algebry, tak som sa rozhodol, že idem sa do toho pustiť a že vytvorím svoju neurálnu sieť dokým prídeme do Bratislavy.
+
+Začiatky písania kódu neurálnej siete boli ťažké. Vôbec som nevedel, kde začať, akým spôsobom si sieť navrhnúť, pomocou akých datových štruktúr ju reprezentovať. Pozeral som mnoho videí a blogových príspevkov rozoberajúcich neurálne siete, no spraviť jednu sám bolo ťažšie, ako sa zdalo. Zlom nastal vo vlaku na ceste z Prahy do Bratislavy, keď z ničoho nič prestal fungovať internet a jediné, čo mi zostalo bol Python na počítači a učebnica lineárnej algebry. Cesta bola ešte dlhá, tak som sa rozhodol, že idem skúšať. Z vlaku som nakoniec víťazne odchádzal s fungujúcou neurálnou sieťou a prvým vtákom, ktorý vedel nešikovne skákať a prekonávať prekážky.
 
 Od tohoto malého úspechu to už išlo ľahko. Vtáky a neurálnu sieť som prepísal, hlavne zovšeobecnil, doladil som detaily a začal som písať **Genetic Algorithm**. Ten ku podivu nebol veľmi zložitý, zvládol som ho napísať sám na základe článku popisujúci základy tohoto algoritmu. V tomto bode som si myslel, že mi hra fungovala bezchybne. Avšak, narazil som na problém.
 
