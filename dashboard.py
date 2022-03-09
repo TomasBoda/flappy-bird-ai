@@ -15,8 +15,13 @@ class Dashboard:
         # dashboard background
         pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(self.x, self.y, self.width, self.height), 0, 5)
 
+        numbers = [ 1, 2, 3 ]
+        number_endings = [ "st", "nd", "rd", "th" ]
+        gen_number = int(str(generation)[-1]) - 1
+        generation_number = str(generation) + number_endings[gen_number] if generation in numbers else str(generation) + "th"
+
         # číslo generácie
-        gen_text = large_font.render("Generation " + str(generation), True, (0, 0, 0))
+        gen_text = large_font.render(generation_number + " generation", True, (0, 0, 0))
         screen.blit(gen_text, (self.x + 20, self.y + 20, gen_text.get_rect().width, gen_text.get_rect().height))
 
         all_birds = birds + list(reversed(dead))
