@@ -1,7 +1,4 @@
-# Flappy Bird Neural Network using Genetic Algorithm for learning
-# Tomáš Boďa, 1. ročník, kruh 31
-# zimný semester 2021/2022
-# Programování I NPRG030
+# by Tomáš Boďa
 
 import pygame
 from game import Game
@@ -14,7 +11,6 @@ game = Game()
 
 running = True
 
-# hlavný gameloop
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -22,9 +18,7 @@ while running:
 
     config.screen.fill((255, 255, 255))
 
-    # hlavná logika renderovania
     game.render()
-    # hlavná logika hry
     game.update()
 
     pygame.display.update()

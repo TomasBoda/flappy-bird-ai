@@ -11,7 +11,6 @@ class Bird:
         self.width = 51
         self.height = 36
         
-        # type = RANDOM / COPY OF WINNER / CROSSOVER
         self.type = type
         self.velocity = 0
 
@@ -30,28 +29,20 @@ class Bird:
 
         self.predict(closest_pipe)
 
-    # funkcia, ktorá pošle nové dáta do neurálnej siete
-    # na základe výsledkov neurálnej siete rozhodne,
-    # či má vták skočiť alebo nič nespraviť
     def predict(self, closest_pipe):
         closest_pipe_horizontal_distance = closest_pipe.x + pipe_width - self.x
         closest_pipe_vertical_distance = self.y - closest_pipe.y
 
-        # do neurálnej siete pošleme dva parametre:
-        # vertikálnu a horizontálnu vzdialenosť od najbližšieho potrubia
         self.brain.feed_forward([ closest_pipe_horizontal_distance, closest_pipe_vertical_distance ])
         
         output = self.brain.get_output_values()[0]
 
-        # návratová hodnota je interval [0, 1]:
-        # vták skočí, pokiaľ je hodnota >= 0.5
         if output >= 0.5:
             self.jump()
 
     def jump(self):
         self.velocity = -7
 
-    # funckia, ktorá rieši gravitáciu a zrýchlenie padajúceho vtáka
     def apply_physics(self):
         self.velocity += gravity
 
@@ -62,6 +53,5 @@ class Bird:
         self.image = pygame.image.load("assets/bird-" + color + ".png").convert_alpha()
         self.image = pygame.transform.smoothscale(self.image, (self.width, self.height)) 
 
-    # funkcia používaná na výpočet kolízie
     def get_bounds(self):
         return Rectangle(self.x, self.y, self.width, self.height)

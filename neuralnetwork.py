@@ -9,8 +9,6 @@ class NeuralNetwork:
         self.weights = self.init_weights() if weights is None else weights
         self.biases = self.init_biases()
 
-    # algoritmus, ktorý postupne preposiela vstupné dáta cez
-    # jednotlivé vrstvy neurálnej siete, až sa dostanú do output neurónov
     def feed_forward(self, input_data):
         for i in range(len(self.nodes[0])):
             self.nodes[0][i] = input_data[i]
@@ -23,16 +21,12 @@ class NeuralNetwork:
                 value = 0
 
                 for k in range(len(self.weights[i][j])):
-                    # neurón = minulý neurón * weight + bias
                     value += self.weights[i][j][k] * previous_nodes[k] + self.biases[i][j]
 
-                # výsledná hodnota ešte musí prejsť cez sigmoid funkciu,
-                # ktorá ju znormalizuje do intervalu [0, 1]
                 layer_values.append(self.sigmoid(value))
 
             self.nodes[i + 1] = layer_values
 
-    # získanie výslednej hodnoty z output vrstvy
     def get_output_values(self):
         return self.nodes[-1]
 

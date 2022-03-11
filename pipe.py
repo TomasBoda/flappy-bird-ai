@@ -8,7 +8,6 @@ class Pipe:
         self.x = x
         self.y = self.generate_gap_position()
 
-        # obrázky častí potrubia
         self.top_body = pygame.transform.smoothscale(pygame.image.load("assets/pipe-body.png").convert_alpha(), (pipe_width, self.y - 24)) 
         self.top_head = pygame.transform.smoothscale(pygame.image.load("assets/pipe-head.png").convert_alpha(), (pipe_width, 24)) 
         self.bottom_body = pygame.transform.smoothscale(pygame.image.load("assets/pipe-body.png").convert_alpha(), (pipe_width, screen_height - self.y - pipe_hole_height - 24)) 
@@ -23,7 +22,6 @@ class Pipe:
     def update(self):
         self.x -= pipe_velocity
 
-    # náhodná inicializácia y súradnice diery v potrubí
     def generate_gap_position(self):
         return random.randint(50, screen_height - 50 - pipe_hole_height)
 
@@ -33,10 +31,8 @@ class Pipe:
         self.bottom_body = pygame.transform.smoothscale(pygame.image.load("assets/pipe-body.png").convert_alpha(), (pipe_width, screen_height - self.y - pipe_hole_height - 24)) 
         self.bottom_head = pygame.transform.smoothscale(pygame.image.load("assets/pipe-head.png").convert_alpha(), (pipe_width, 24))
 
-    # funkcia používaná na výpočet kolízie
     def get_top_bounds(self):
         return Rectangle(self.x, 0, pipe_width, self.y)
 
-    # funkcia používaná na výpočet kolízie
     def get_bottom_bounds(self):
         return Rectangle(self.x, self.y + pipe_hole_height, pipe_width, screen_height - self.y - pipe_hole_height)
