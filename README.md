@@ -8,7 +8,7 @@ The aim of this project was to create a Flappy Bird game that learns to play its
 The project is written entirely in Python. The game uses the **PyGame** package for rendering and game logic. The Neural Network and the Genetic Algorithm is written entirely from scratch without the usage of any external libraries and packages.
 
 ## Neural Network
-The Neural Network consists of neurons, weights and biases all represented by Python lists. The Neural Network is scalable and flexible, designed to take the `layers` parameter representing individual layers of the network and the number of neurons in each layer. The Feed Forward algorithm takes values from the input neurons, feeds them into the network and forwards them through the network all the way to the output neurons. I opted for the **Sigmoid** function to normalize neuron values into the interval of `[0, 1]`. Below is the implementation of the Neural Network.
+The Neural Network consists of neurons, weights and biases all represented by Python lists. The Neural Network is scalable and flexible, designed to take the `layers` parameter representing individual layers of the network and the number of neurons in each layer. The **Feed Forward** algorithm takes values from the input neurons, feeds them into the network and forwards them through the network all the way to the output neurons. I opted for the **Sigmoid** function to normalize neuron values into the interval of `[0, 1]`. Below is the implementation of the Neural Network.
 
 ```python
 class NeuralNetwork:
@@ -89,7 +89,7 @@ def spawn_new_generation(dead) -> list:
     return next_gen
 ```
 ## How it works
-In each frame, each bird feeds the neural networks two parameters: the horizontal and the vertical distance from the closest pipe. Each bird then decides whether to jump or not based on the output of the Neural Network. If the ouput is larger or equal to 0.5, the bird jumps, otherwise not.
+In each frame, each bird feeds the neural network two parameters: the horizontal and the vertical distance from the closest pipe. Each bird then decides whether to jump or not based on the output of the Neural Network. If the ouput is larger or equal to 0.5, the bird jumps, otherwise not.
 
 ```python
 def predict(self, closest_pipe):
@@ -106,3 +106,5 @@ def predict(self, closest_pipe):
 
 ## Result
 After running the game, the birds start to jump randomly, some dying at the very beginning, some passing a few pipes, but eventually, all of them dying soon. Then, a new generation is created, being much better that the last one. Letting the game run a few generations, few birds manage to play for minutes, even hours.
+
+**Flappy Bird AI using Genetic Algorithm** by [Tomáš Boďa](https://github.com/TomasBoda)
